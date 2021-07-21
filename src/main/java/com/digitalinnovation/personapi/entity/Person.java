@@ -21,7 +21,7 @@ public class Person {
     private long id;
 
     @Column(nullable = false)
-    private String fitsName;
+    private String firstName;
 
     @Column(nullable = false)
     private String lastName;
@@ -31,6 +31,7 @@ public class Person {
 
     private LocalDate birthDate;
 
+    // a anotação "@OneToMany" é de relcaionamento de tabelas (entidades), então ele cria uma tabela intermediaria chamada de PERSON-PHONE, onde a mesma ficará responsavel em guardar a conexão de uma pessoa com os seus telefones
     // o cascade permite adicionar os telefones sem que primeiro tenha que fazer uma instacia do Phone
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}) //cria uma tabela entre as duas tabelas, onde ira guardar as id dos dois
     private List<Phone> phones;
